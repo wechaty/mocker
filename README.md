@@ -4,6 +4,10 @@
 ![NPM](https://github.com/wechaty/wechaty-mocker/workflows/NPM/badge.svg)
 [![TypeScript](https://img.shields.io/badge/%3C%2F%3E-TypeScript-blue.svg)](https://www.typescriptlang.org/)
 
+![Wechaty Mocker](docs/images/the-matrix.jpg)
+
+> Credit: [The Matrix](https://100scifimovies.com/the-matrix/)
+
 Wechaty Mocker provides the mocking system for testing Wechaty Chatbots.
 
 ## What is this
@@ -31,6 +35,18 @@ for await (const fixture of createFixture()) {
   // ...
 }
 ```
+
+## Reference
+
+To be written.
+
+### `Mocker`
+
+### `ContactMock`
+
+### `RoomMock`
+
+### `MessageMock`
 
 ## History
 
