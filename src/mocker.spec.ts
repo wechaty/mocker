@@ -5,8 +5,8 @@ import sinon from 'sinon'
 
 import { PuppetMock } from 'wechaty-puppet-mock'
 
-import { Mocker } from './mocker'
-import { SimpleEnvironment } from './environment'
+import { Mocker }             from './mocker'
+import { SimpleEnvironment }  from './environment'
 import {
   EventScanPayload,
   ScanStatus,
@@ -27,9 +27,10 @@ class MockerTest extends Mocker {
 
 function createFixture () {
   const mocker = new Mocker()
-  const puppet = new PuppetMock({ mocker })
+  // FIXME(huan): any
+  const puppet = new PuppetMock({ mocker: mocker as any })
 
-  const [ user, mike, mary ] = mocker.createContacts(3)
+  const [user, mike, mary] = mocker.createContacts(3)
   const room = mocker.createRoom({
     memberIdList: [
       mike.id,
@@ -51,7 +52,8 @@ function createFixture () {
 test('Mocker restart without problem', async t => {
   const mocker = new MockerTest()
   mocker.use(SimpleEnvironment())
-  const puppet = new PuppetMock({ mocker })
+  // FIXME(huan): any
+  const puppet = new PuppetMock({ mocker: mocker as any })
   void puppet
 
   try {
