@@ -46,9 +46,14 @@
     "@chatie/tsconfig": "^0.10.1",
     "@types/faker": "^4.1.12",
     "pkg-jq": "^0.2.4",
+    "shx": "^0.3.2",
     "tstest": "^0.4.10",
     "wechaty": "^0.40.10",
     "wechaty-puppet-mock": "^0.22.41"
+  },
+  "peerDependencies": {
+    "wechaty": "*",
+    "wechaty-puppet-mock": "*"
   },
   "dependencies": {
     "faker": "^4.1.0"

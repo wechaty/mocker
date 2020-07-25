@@ -231,7 +231,7 @@ test('Multiple Mockers with their MockContact(s)', async t => {
   const contact1 = mocker1.createContact({ id: ID })
   const contact2 = mocker2.createContact({ id: ID })
 
-  t.notEqual(contact1, contact2, 'should have seperate MockContact classes')
+  t.notEqual(contact1, contact2, 'should have separate MockContact classes')
   t.equal(contact1.id, contact2.id, 'should have the same id from different mocker instances')
 })
 

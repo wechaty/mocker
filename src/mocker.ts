@@ -1,5 +1,6 @@
 import cuid from 'cuid'
 import {
+  Puppet,
   ContactPayload,
   RoomPayload,
   MessagePayload,
@@ -8,8 +9,6 @@ import {
 }                     from 'wechaty-puppet'
 
 import { cloneClass } from 'clone-class'
-
-import { PuppetMock } from 'wechaty-puppet-mock'
 
 import {
   ContactMock,
@@ -38,8 +37,8 @@ class Mocker {
   protected behaviorList: MockEnvironment[]
   protected behaviorCleanupFnList: (() => void)[]
 
-  protected _puppet?: PuppetMock
-  set puppet (puppet: PuppetMock) {
+  protected _puppet?: Puppet
+  set puppet (puppet: Puppet) {
     if (this._puppet) {
       throw new Error('puppet has already been set before. can not be set twice.')
     }
@@ -192,8 +191,9 @@ class Mocker {
   }
 
   login (user: ContactMock) {
-    this.puppet.login(user.id)
-      .catch(e => log.error('Mocker', 'login(%s) rejection: %s', user.id, e))
+    // FIXME(huan): login() is protected
+    (this.puppet as any).login(user.id)
+      .catch((e: any) => log.error('Mocker', 'login(%s) rejection: %s', user.id, e))
   }
 
   /**
