@@ -28,7 +28,8 @@ interface Fixture {
 
 async function * createFixture (): AsyncGenerator<Fixture> {
   const mocker = new Mocker()
-  const puppet = new PuppetMock({ mocker })
+  // FIXME(huan): any
+  const puppet = new PuppetMock({ mocker: mocker as any })
   const wechaty = new Wechaty({ puppet })
 
   await wechaty.start()
