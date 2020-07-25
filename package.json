@@ -1,0 +1,64 @@
+{
+  "name": "wechaty-mocker",
+  "version": "0.0.1",
+  "description": "Wechaty Mocker provides the mocking system for testing Wechaty chatbots",
+  "main": "dist/src/mod.js",
+  "typings": "dist/src/mod.d.ts",
+  "engines": {
+    "node": ">= 12"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "clean": "shx rm -fr dist/*",
+    "dist": "npm run clean && tsc",
+    "pack": "npm pack",
+    "lint": "npm run lint:es && npm run lint:ts",
+    "lint:ts": "tsc --noEmit",
+    "test": "npm run lint && npm run test:unit",
+    "test:unit": "blue-tape -r ts-node/register \"src/**/*.spec.ts\" \"tests/**/*.spec.ts\"",
+    "test:pack": "bash -x scripts/npm-pack-testing.sh",
+    "lint:es": "eslint --ignore-pattern tests/fixtures/ '{bin,examples,scripts,src,tests}/**/*.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wechaty/wechaty-mocker.git"
+  },
+  "keywords": [
+    "wechaty",
+    "test",
+    "testing",
+    "mock",
+    "mocking"
+  ],
+  "author": "Huan LI <zixia@zixia.net> (李卓桓)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/wechaty/wechaty-mocker/issues"
+  },
+  "homepage": "https://github.com/wechaty/wechaty-mocker#readme",
+  "devDependencies": {
+    "@chatie/eslint-config": "^0.12.1",
+    "@chatie/git-scripts": "^0.6.2",
+    "@chatie/semver": "^0.4.7",
+    "@chatie/tsconfig": "^0.10.1",
+    "@types/faker": "^4.1.12",
+    "pkg-jq": "^0.2.4",
+    "tstest": "^0.4.10",
+    "wechaty": "^0.40.10",
+    "wechaty-puppet-mock": "^0.22.41"
+  },
+  "dependencies": {
+    "faker": "^4.1.0"
+  },
+  "git": {
+    "scripts": {
+      "pre-push": "npx git-scripts-pre-push"
+    }
+  },
+  "publishConfig": {
+    "tag": "next"
+  }
+}
