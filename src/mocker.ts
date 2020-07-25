@@ -45,6 +45,7 @@ class Mocker {
     }
     this._puppet = puppet
   }
+
   get puppet () {
     if (!this._puppet) {
       throw new Error('puppet has not been set yet, cannot be used.')
