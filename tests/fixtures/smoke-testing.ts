@@ -1,5 +1,5 @@
 import {
-  Mocker,
+  createFixture,
   VERSION,
 }               from 'wechaty-mocker'
 
@@ -9,8 +9,10 @@ async function main () {
       throw new Error('version not set right before publish!')
     }
 
-    const mocker = new Mocker()
-    console.info(`Smoke Testing PASSED!`)
+    for await (const fixture of createFixture()) {
+      console.info(`Smoke Testing PASSED!`)
+    }
+
     return 0
 
   } catch (e) {

@@ -1,35 +1,50 @@
 /* eslint-disable sort-keys */
 import {
   PuppetMock,
+  mock,
 }                 from 'wechaty-puppet-mock'
 import {
   Wechaty,
   Message,
-}                  from 'wechaty'
-
-import { Mocker } from './mocker'
+  Room,
+  Contact,
+}                 from 'wechaty'
 import {
-  ContactMock,
-  RoomMock,
-}                 from './user/mod'
+  ContactSelf,
+}                 from 'wechaty/dist/src/user/mod'
+
 interface Fixture {
-  wechaty : Wechaty,
-  mocker  : Mocker,
+  mocker: {
+    mocker : mock.Mocker,
+
+    room   : mock.RoomMock,
+    bot    : mock.ContactMock,
+    player : mock.ContactMock,
+  },
+
+  wechaty : {
+    wechaty : Wechaty,
+
+    room    : Room,
+    bot     : ContactSelf,
+    player  : Contact,
+
+    /**
+     * A message should be that:
+     *  1. said by player
+     *  1. in room
+     *  1. with type `text`, random content
+     */
+    message : Message,
+  },
 
   moList: Message[],
   mtList: Message[],
-
-  bot     : ContactMock,
-  player  : ContactMock,
-  message : Message,
-
-  room: RoomMock,
 }
 
 async function * createFixture (): AsyncGenerator<Fixture> {
-  const mocker = new Mocker()
-  // FIXME(huan): any
-  const puppet = new PuppetMock({ mocker: mocker as any })
+  const mocker = new mock.Mocker()
+  const puppet = new PuppetMock({ mocker })
   const wechaty = new Wechaty({ puppet })
 
   await wechaty.start()
@@ -68,13 +83,23 @@ async function * createFixture (): AsyncGenerator<Fixture> {
   wechaty.on('message', recordMobileOriginatedMessage)
 
   yield {
-    wechaty,
-    mocker,
+    mocker: {
+      mocker,
 
-    bot,
-    player,
-    message,
-    room,
+      bot,
+      player,
+      room,
+    },
+
+    wechaty: {
+      wechaty,
+
+      bot    : wechaty.userSelf(),
+      player : wechaty.Contact.load(player.id),
+      room   : wechaty.Room.load(room.id),
+
+      message,
+    },
 
     moList,
     mtList,
