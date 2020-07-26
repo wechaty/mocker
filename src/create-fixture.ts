@@ -51,6 +51,7 @@ async function * createFixture (): AsyncGenerator<Fixture> {
 
   const bot    = mocker.createContact({ name: 'Bot' })
   const player = mocker.createContact({ name: 'Player' })
+
   mocker.login(bot)
 
   const room = mocker.createRoom({
