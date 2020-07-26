@@ -1,6 +1,6 @@
 {
   "name": "wechaty-mocker",
-  "version": "0.4.1",
+  "version": "0.5.1",
   "description": "Wechaty Mocker provides the mocking system for testing Wechaty chatbots",
   "main": "dist/src/mod.js",
   "typings": "dist/src/mod.d.ts",
@@ -49,7 +49,7 @@
     "shx": "^0.3.2",
     "tstest": "^0.4.10",
     "wechaty": "^0.45.2",
-    "wechaty-puppet-mock": "^0.27.2",
+    "wechaty-puppet-mock": "^0.27.5",
     "wechaty-vorpal": "^0.6.6",
     "wechaty-vorpal-contrib": "^0.6.46"
   },

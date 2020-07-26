@@ -10,6 +10,7 @@ async function main () {
     }
 
     for await (const fixture of createFixture()) {
+      void fixture
       console.info(`Smoke Testing PASSED!`)
     }
 

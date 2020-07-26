@@ -6,7 +6,7 @@ import { MathMaster }     from 'wechaty-vorpal-contrib'
 
 import {
   createFixture,
-  mock,
+  MessageMock,
 }                   from '../src/mod' // from 'wechaty-mocker'
 
 async function main (): Promise<number> {
@@ -28,7 +28,7 @@ async function main (): Promise<number> {
     /**
      * Player Logic
      */
-    const onMessageMock = async (message: mock.MessageMock) => {
+    const onMessageMock = async (message: MessageMock) => {
       if (message.type() !== Message.Type.Text)   { return }
       const text = message.text()
       if (!text)                                  { return }

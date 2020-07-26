@@ -1,11 +1,24 @@
-import { mock } from 'wechaty-puppet-mock'
-
 import { VERSION }        from './version'
 import { createFixture }  from './create-fixture'
+
+import {
+  RoomMock,
+  ContactMock,
+  Mocker,
+  EnvironmentMock,
+  SimpleEnvironment,
+  MessageMock,
+}                         from './mock'
 
 export {
   VERSION,
   createFixture,
 
-  mock,
+  Mocker,
+  EnvironmentMock,
+  SimpleEnvironment,
+
+  RoomMock,
+  ContactMock,
+  MessageMock,
 }

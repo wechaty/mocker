@@ -13,6 +13,8 @@ import {
   ContactSelf,
 }                 from 'wechaty/dist/src/user/mod'
 
+import { EnvironmentMock } from './mock'
+
 interface Fixture {
   mocker: {
     mocker : mock.Mocker,
@@ -42,8 +44,14 @@ interface Fixture {
   mtList: Message[],
 }
 
-async function * createFixture (): AsyncGenerator<Fixture> {
+async function * createFixture (
+  environment?: EnvironmentMock,
+): AsyncGenerator<Fixture> {
   const mocker = new mock.Mocker()
+  if (environment) {
+    mocker.use(environment)
+  }
+
   const puppet = new PuppetMock({ mocker })
   const wechaty = new Wechaty({ puppet })
 
