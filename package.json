@@ -12,6 +12,7 @@
     "test": "tests"
   },
   "scripts": {
+    "start": "ts-node examples/math-master.ts",
     "clean": "shx rm -fr dist/*",
     "dist": "npm run clean && tsc",
     "pack": "npm pack",

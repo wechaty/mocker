@@ -98,6 +98,7 @@ To be written.
 ### v0.4 (July 27, 2020)
 
 1. Add the [Math Master](examples/math-master.ts) example.
+1. Support `EnvironmentMock` for `createFixture(...)`
 
 ### v0.2 (July 25, 2020)
 
