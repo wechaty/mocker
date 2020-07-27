@@ -74,6 +74,7 @@ const onMessageMock = async (message: mock.MessageMock) => {
   await new Promise(resolve => setTimeout(resolve, 500))
   mocker.player.say(result).to(mocker.bot)
 }
+
 mocker.player.on('message', onMessageMock)
 ```
 
