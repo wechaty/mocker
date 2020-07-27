@@ -45,20 +45,19 @@
     "@chatie/git-scripts": "^0.6.2",
     "@chatie/semver": "^0.4.7",
     "@chatie/tsconfig": "^0.10.1",
-    "@types/faker": "^4.1.12",
     "pkg-jq": "^0.2.4",
     "shx": "^0.3.2",
     "tstest": "^0.4.10",
     "wechaty": "^0.45.2",
-    "wechaty-puppet-mock": "^0.27.5",
     "wechaty-vorpal": "^0.6.6",
     "wechaty-vorpal-contrib": "^0.6.46"
   },
   "peerDependencies": {
-    "wechaty": "*",
-    "wechaty-puppet-mock": "*"
+    "wechaty": "*"
   },
-  "dependencies": {},
+  "dependencies": {
+    "wechaty-puppet-mock": "^0.27.5"
+  },
   "git": {
     "scripts": {
       "pre-push": "npx git-scripts-pre-push"
