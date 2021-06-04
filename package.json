@@ -1,6 +1,6 @@
 {
   "name": "wechaty-mocker",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Wechaty Mocker provides the mocking system for testing Wechaty chatbots",
   "main": "dist/src/mod.js",
   "typings": "dist/src/mod.d.ts",
