@@ -59,7 +59,7 @@ async function main (): Promise<number> {
 
     mocker.player.say('math_master').to(mocker.bot)
 
-    await new Promise(resolve => wechaty.wechaty.on('message', msg => {
+    await new Promise<void>(resolve => wechaty.wechaty.on('message', msg => {
       if (/Game Over/i.test(msg.text())) {
         resolve()
       }
