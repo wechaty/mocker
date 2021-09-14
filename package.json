@@ -1,6 +1,6 @@
 {
   "name": "wechaty-mocker",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Wechaty Mocker provides the mocking system for testing Wechaty chatbots",
   "type": "module",
   "exports": {
