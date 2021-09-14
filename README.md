@@ -94,7 +94,9 @@ To be written.
 
 ## History
 
-### master
+### master v0.9 (Sep 15, 2021)
+
+1. ES Modules support
 
 ### v0.4 (July 27, 2020)
 
