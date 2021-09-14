@@ -1,10 +1,10 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env -S node --no-warnings --loader ts-node/esm
 
 import { test }  from 'tstest'
 
-import { Message } from 'wechaty'
+import type { Message } from 'wechaty'
 
-import { createFixture } from '../src/mod'
+import { createFixture } from '../src/mod.js'
 
 test('integration testing', async t => {
   for await (const fixture of createFixture()) {

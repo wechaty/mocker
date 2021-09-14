@@ -8,12 +8,14 @@ import Mocker = mock.Mocker
 import EnvironmentMock = mock.EnvironmentMock
 import SimpleEnvironment = mock.SimpleEnvironment
 
+export type {
+  EnvironmentMock,
+}
 export {
   RoomMock,
   ContactMock,
   MessageMock,
 
   Mocker,
-  EnvironmentMock,
   SimpleEnvironment,
 }

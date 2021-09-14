@@ -2,24 +2,32 @@
   "name": "wechaty-mocker",
   "version": "0.7.3",
   "description": "Wechaty Mocker provides the mocking system for testing Wechaty chatbots",
-  "main": "dist/src/mod.js",
-  "typings": "dist/src/mod.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/src/mod.js",
+      "require": "./dist/cjs/src/mod.js"
+    }
+  },
+  "typings": "./dist/esm/src/mod.d.ts",
   "engines": {
-    "node": ">= 12"
+    "wechaty": ">=0.69",
+    "node": ">=14"
   },
   "directories": {
     "doc": "docs",
     "test": "tests"
   },
   "scripts": {
-    "start": "ts-node examples/math-master.ts",
+    "build": "tsc && tsc -p tsconfig.cjs.json",
     "clean": "shx rm -fr dist/*",
-    "dist": "npm run clean && tsc",
-    "pack": "npm pack",
+    "dist": "npm-run-all clean build dist:commonjs",
+    "dist:commonjs": "jq -n \"{ type: \\\"commonjs\\\" }\" > dist/cjs/package.json",
+    "start": "ts-node examples/math-master.ts",
     "lint": "npm run lint:es && npm run lint:ts",
-    "lint:ts": "tsc --noEmit",
-    "test": "npm run lint && npm run test:unit",
-    "test:unit": "blue-tape -r ts-node/register \"src/**/*.spec.ts\" \"tests/**/*.spec.ts\"",
+    "lint:ts": "tsc --isolatedModules --noEmit",
+    "test": "npm-run-all lint test:unit",
+    "test:unit": "tap --node-arg=--loader=ts-node/esm --node-arg=--no-warnings  \"src/**/*.spec.ts\" \"tests/**/*.spec.ts\"",
     "test:pack": "bash -x scripts/npm-pack-testing.sh",
     "lint:es": "eslint --ignore-pattern tests/fixtures/ '{bin,examples,scripts,src,tests}/**/*.ts'"
   },
@@ -41,14 +49,15 @@
   },
   "homepage": "https://github.com/wechaty/wechaty-mocker#readme",
   "devDependencies": {
-    "@chatie/eslint-config": "^0.12.4",
+    "@chatie/eslint-config": "^0.14.1",
     "@chatie/git-scripts": "^0.6.2",
     "@chatie/semver": "^0.4.7",
-    "@chatie/tsconfig": "^0.16.2",
+    "@chatie/tsconfig": "^0.20.2",
+    "npm-run-all": "^4.1.5",
     "pkg-jq": "^0.2.11",
     "shx": "^0.3.3",
-    "tstest": "^0.4.10",
-    "wechaty": "^0.65.6",
+    "tstest": "^0.5.16",
+    "wechaty": "^0.69.50",
     "wechaty-vorpal": "^0.6.12",
     "wechaty-vorpal-contrib": "^0.6.51"
   },
@@ -60,6 +69,14 @@
     "scripts": {
       "pre-push": "npx git-scripts-pre-push"
     }
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "src/"
+  ],
+  "tap": {
+    "check-coverage": false
   },
   "publishConfig": {
     "tag": "next"

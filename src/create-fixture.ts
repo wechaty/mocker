@@ -9,11 +9,11 @@ import {
   Room,
   Contact,
 }                 from 'wechaty'
-import {
+import type {
   ContactSelf,
-}                 from 'wechaty/dist/src/user/mod'
+}                 from 'wechaty'
 
-import { EnvironmentMock } from './mock'
+import type { EnvironmentMock } from './mock.js'
 
 interface Fixture {
   mocker: {

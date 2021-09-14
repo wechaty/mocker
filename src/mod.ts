@@ -1,5 +1,5 @@
-import { VERSION }        from './version'
-import { createFixture }  from './create-fixture'
+import { VERSION }        from './config.js'
+import { createFixture }  from './create-fixture.js'
 
 import {
   RoomMock,
@@ -8,14 +8,16 @@ import {
   EnvironmentMock,
   SimpleEnvironment,
   MessageMock,
-}                         from './mock'
+}                         from './mock.js'
 
+export type {
+  EnvironmentMock,
+}
 export {
   VERSION,
   createFixture,
 
   Mocker,
-  EnvironmentMock,
   SimpleEnvironment,
 
   RoomMock,
