@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env -S node --no-warnings --loader ts-node/esm
 
 import {
   test,
@@ -12,7 +12,7 @@ import {
   mock,
 }                         from 'wechaty-puppet-mock'
 
-import { createFixture }  from './create-fixture'
+import { createFixture }  from './create-fixture.js'
 
 test('createFixture() initial state', async (t) => {
   for await (const fixture of createFixture()) {
@@ -41,12 +41,12 @@ test('createFixture() Mobile Originated', async (t) => {
     await new Promise(setImmediate)
 
     t.true(spy.called, 'should received message event')
-    t.equal(spy.args[0][0].from().id, fixture.mocker.bot.id, 'should get bot as from')
-    t.equal(spy.args[0][0].to().id, fixture.mocker.player.id, 'should get player as to')
+    t.equal(spy.args[0]![0].from().id, fixture.mocker.bot.id, 'should get bot as from')
+    t.equal(spy.args[0]![0].to().id, fixture.mocker.player.id, 'should get player as to')
 
     t.equal(fixture.moList.length, 1, 'should be 1 mo')
     t.equal(fixture.mtList.length, 0, 'should be empty mt list')
-    t.equal(fixture.moList[0].id, spy.args[0][0].id, 'should get the same message instance')
+    t.equal(fixture.moList[0]!.id, spy.args[0]![0].id, 'should get the same message instance')
   }
 })
 
@@ -59,12 +59,12 @@ test('createFixture() Mobile Terminated', async (t) => {
     await new Promise(setImmediate)
 
     t.true(spy.called, 'should received message event')
-    t.equal(spy.args[0][0].to().id, fixture.mocker.bot.id, 'should get bot as to')
-    t.equal(spy.args[0][0].from().id, fixture.mocker.player.id, 'should get player as from')
+    t.equal(spy.args[0]![0].to().id, fixture.mocker.bot.id, 'should get bot as to')
+    t.equal(spy.args[0]![0].from().id, fixture.mocker.player.id, 'should get player as from')
 
     t.equal(fixture.moList.length, 0, 'should be 0 mo')
     t.equal(fixture.mtList.length, 1, 'should be 1 mt')
-    t.equal(fixture.mtList[0].id, spy.args[0][0].id, 'should get the same message instance')
+    t.equal(fixture.mtList[0]!.id, spy.args[0]![0].id, 'should get the same message instance')
   }
 })
 
@@ -83,7 +83,7 @@ test('user.say() multiple times with moList', async t => {
     t.equal(fixture.moList.length, TEXT_LIST.length, 'should receive all TEXT_LIST')
     for (let i = 0; i < TEXT_LIST.length; i++) {
       t.ok(fixture.moList[i], `should exist moList for ${i}`)
-      t.deepEqual(fixture.moList[i].text(), TEXT_LIST[i], `should get TEXT_LIST[${i}]: ${TEXT_LIST[i]}`)
+      t.deepEqual(fixture.moList[i]!.text(), TEXT_LIST[i], `should get TEXT_LIST[${i}]: ${TEXT_LIST[i]}`)
     }
   }
 })
@@ -97,7 +97,7 @@ test('Contact.find() mocker.createContacts()', async t => {
     const existingNum = existingContactList.length
 
     const CONTACTS_NUM = 3
-    const [mike] = mocker.mocker.createContacts(CONTACTS_NUM)
+    const [mike] = mocker.mocker.createContacts(CONTACTS_NUM) as [mock.ContactMock]
 
     const contactList = await wechaty.wechaty.Contact.findAll()
     t.equal(contactList.length, existingNum + CONTACTS_NUM, 'should find all contacts create by mocker: ' + existingNum + CONTACTS_NUM)
@@ -117,7 +117,7 @@ test('Room.find() mocker.createRooms()', async t => {
     const existingNum = existingRoomList.length
 
     const ROOMS_NUM = 5
-    const [starbucks] = mocker.mocker.createRooms(ROOMS_NUM)
+    const [starbucks] = mocker.mocker.createRooms(ROOMS_NUM) as [mock.RoomMock]
 
     const roomList = await wechaty.wechaty.Room.findAll()
     t.equal(roomList.length, existingNum + ROOMS_NUM, 'should find all rooms create by mocker: ' + existingNum + ROOMS_NUM)

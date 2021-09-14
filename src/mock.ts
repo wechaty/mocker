@@ -5,15 +5,18 @@ import ContactMock = mock.ContactMock
 import RoomMock = mock.RoomMock
 
 import Mocker = mock.Mocker
-import EnvironmentMock = mock.EnvironmentMock
 import SimpleEnvironment = mock.SimpleEnvironment
 
+type EnvironmentMock = mock.EnvironmentMock
+
+export type {
+  EnvironmentMock,
+}
 export {
   RoomMock,
   ContactMock,
   MessageMock,
 
   Mocker,
-  EnvironmentMock,
   SimpleEnvironment,
 }

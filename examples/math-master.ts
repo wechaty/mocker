@@ -1,4 +1,4 @@
-#!/usr/bin/env ts-node
+#!/usr/bin/env -S node --no-warnings --loader ts-node/esm
 
 import { Message }        from 'wechaty'
 import { WechatyVorpal }  from 'wechaty-vorpal'
@@ -7,7 +7,7 @@ import { MathMaster }     from 'wechaty-vorpal-contrib'
 import {
   createFixture,
   MessageMock,
-}                   from '../src/mod' // from 'wechaty-mocker'
+}                   from '../src/mod.js' // from 'wechaty-mocker'
 
 async function main (): Promise<number> {
   /**
@@ -37,11 +37,11 @@ async function main (): Promise<number> {
       const match = text?.match(MATH_RE)
       if (!match)                                 { return }
 
-      const score = parseInt(match[1], 10)
+      const score = parseInt(match[1]!, 10)
       if (score > 13)                             { return }
 
-      const x = parseInt(match[2], 10)
-      const y = parseInt(match[3], 10)
+      const x = parseInt(match[2]!, 10)
+      const y = parseInt(match[3]!, 10)
 
       const result = String(x + y)
 
