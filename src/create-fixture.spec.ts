@@ -83,7 +83,7 @@ test('user.say() multiple times with moList', async t => {
     t.equal(fixture.moList.length, TEXT_LIST.length, 'should receive all TEXT_LIST')
     for (let i = 0; i < TEXT_LIST.length; i++) {
       t.ok(fixture.moList[i], `should exist moList for ${i}`)
-      t.deepEqual(fixture.moList[i]!.text(), TEXT_LIST[i], `should get TEXT_LIST[${i}]: ${TEXT_LIST[i]}`)
+      t.same(fixture.moList[i]!.text(), TEXT_LIST[i], `should get TEXT_LIST[${i}]: ${TEXT_LIST[i]}`)
     }
   }
 })
@@ -145,7 +145,7 @@ test('Contact.load() mocker.createContact()', async t => {
     t.equal(contact!.id, filehelper.id, 'should load contact with id the same as filehelper')
 
     await contact.ready()
-    t.deepEqual((contact as any).payload, filehelper.payload, 'should match the payload between wechaty contact & mock contact')
+    t.same(contact.name(), filehelper.payload.name, 'should match the payload between wechaty contact & mock contact')
   }
 })
 
@@ -162,6 +162,6 @@ test('Room.load() mocker.createRoom()', async t => {
     t.equal(room!.id, starbucks.id, 'should load room with id the same as starbucks')
 
     await room.ready()
-    t.deepEqual((room as any).payload, starbucks.payload, 'should match the payload between wechaty room & mock room')
+    t.same((room as any).payload, starbucks.payload, 'should match the payload between wechaty room & mock room')
   }
 })

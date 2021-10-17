@@ -34,7 +34,7 @@ async function main (): Promise<number> {
       if (!text)                                  { return }
 
       const MATH_RE = /Score: (\d+).+?(\d+) \+ (\d+) = \?/s
-      const match = text?.match(MATH_RE)
+      const match = text.match(MATH_RE)
       if (!match)                                 { return }
 
       const score = parseInt(match[1]!, 10)
