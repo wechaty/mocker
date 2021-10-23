@@ -95,9 +95,11 @@ To be written.
 
 ## History
 
-### master v0.9 (Sep 15, 2021)
+### master v1.0
 
-1. ES Modules support
+Release v1.0 of Wechaty Mocker.
+
+1. v0.9 (Sep 15, 2021): ES Modules support
 
 ### v0.4 (July 27, 2020)
 

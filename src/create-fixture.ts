@@ -5,6 +5,7 @@ import {
 }                 from 'wechaty-puppet-mock'
 import {
   Wechaty,
+  WechatyBuilder,
   Message,
   Room,
   Contact,
@@ -53,7 +54,7 @@ async function * createFixture (
   }
 
   const puppet = new PuppetMock({ mocker })
-  const wechaty = new Wechaty({ puppet })
+  const wechaty = new WechatyBuilder().options({ puppet }).build()
 
   await wechaty.start()
 
@@ -103,7 +104,7 @@ async function * createFixture (
     wechaty: {
       wechaty,
 
-      bot    : wechaty.userSelf(),
+      bot    : wechaty.currentUser(),
       player : wechaty.Contact.load(player.id),
       room   : wechaty.Room.load(room.id),
 

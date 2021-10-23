@@ -6,8 +6,11 @@ import {
 }                         from 'tstest'
 
 import {
-  Message,
+  impl,
 }                         from 'wechaty'
+import {
+  MessageType,
+}                         from 'wechaty-puppet'
 import {
   mock,
 }                         from 'wechaty-puppet-mock'
@@ -16,8 +19,8 @@ import { createFixture }  from './create-fixture.js'
 
 test('createFixture() initial state', async (t) => {
   for await (const fixture of createFixture()) {
-    t.true(fixture.wechaty.message instanceof Message, 'should have message instance')
-    t.equal(fixture.wechaty.message.type(), Message.Type.Text, 'should have message with text type')
+    t.ok(impl.Message.valid(fixture.wechaty.message), 'should have message instance')
+    t.equal(fixture.wechaty.message.type(), MessageType.Text, 'should have message with text type')
     t.equal(typeof fixture.wechaty.message.text(), 'string', 'should have message with text content')
 
     t.equal(fixture.wechaty.message.talker().id, fixture.mocker.player.id, 'should get a message send from player')
@@ -27,8 +30,8 @@ test('createFixture() initial state', async (t) => {
     t.equal(fixture.moList.length, 0, 'should be empty mo list')
     t.equal(fixture.mtList.length, 0, 'should be empty mt list')
 
-    t.true(fixture.mocker.bot instanceof mock.ContactMock, 'should get mock contact mary')
-    t.true(fixture.mocker.player instanceof mock.ContactMock, 'should get mock contact mike')
+    t.ok(fixture.mocker.bot instanceof mock.ContactMock, 'should get mock contact mary')
+    t.ok(fixture.mocker.player instanceof mock.ContactMock, 'should get mock contact mike')
   }
 })
 
@@ -40,7 +43,7 @@ test('createFixture() Mobile Originated', async (t) => {
     fixture.mocker.bot.say().to(fixture.mocker.player)
     await new Promise(setImmediate)
 
-    t.true(spy.called, 'should received message event')
+    t.ok(spy.called, 'should received message event')
     t.equal(spy.args[0]![0].from().id, fixture.mocker.bot.id, 'should get bot as from')
     t.equal(spy.args[0]![0].to().id, fixture.mocker.player.id, 'should get player as to')
 
@@ -58,7 +61,7 @@ test('createFixture() Mobile Terminated', async (t) => {
     fixture.mocker.player.say().to(fixture.mocker.bot)
     await new Promise(setImmediate)
 
-    t.true(spy.called, 'should received message event')
+    t.ok(spy.called, 'should received message event')
     t.equal(spy.args[0]![0].to().id, fixture.mocker.bot.id, 'should get bot as to')
     t.equal(spy.args[0]![0].from().id, fixture.mocker.player.id, 'should get player as from')
 

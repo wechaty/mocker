@@ -1,6 +1,6 @@
 #!/usr/bin/env -S node --no-warnings --loader ts-node/esm
 
-import { Message }        from 'wechaty'
+import { MessageType } from 'wechaty-puppet'
 import { WechatyVorpal }  from 'wechaty-vorpal'
 import { MathMaster }     from 'wechaty-vorpal-contrib'
 
@@ -29,7 +29,7 @@ async function main (): Promise<number> {
      * Player Logic
      */
     const onMessageMock = async (message: MessageMock) => {
-      if (message.type() !== Message.Type.Text)   { return }
+      if (message.type() !== MessageType.Text)   { return }
       const text = message.text()
       if (!text)                                  { return }
 
