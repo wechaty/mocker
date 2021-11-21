@@ -54,7 +54,7 @@ async function * createFixture (
   }
 
   const puppet = new PuppetMock({ mocker })
-  const wechaty = new WechatyBuilder().options({ puppet }).build()
+  const wechaty = WechatyBuilder.build({ puppet })
 
   await wechaty.start()
 
@@ -104,9 +104,9 @@ async function * createFixture (
     wechaty: {
       wechaty,
 
-      bot    : wechaty.currentUser(),
-      player : wechaty.Contact.load(player.id),
-      room   : wechaty.Room.load(room.id),
+      bot    : wechaty.currentUser,
+      player : (await wechaty.Contact.find({ id: player.id }))!,
+      room   : (await wechaty.Room.find({ id: room.id }))!,
 
       message,
     },
