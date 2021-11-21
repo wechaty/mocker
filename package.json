@@ -1,6 +1,6 @@
 {
   "name": "wechaty-mocker",
-  "version": "1.0.3",
+  "version": "1.10.0",
   "description": "Wechaty Mocker provides the mocking system for testing Wechaty chatbots",
   "type": "module",
   "exports": {
@@ -11,7 +11,6 @@
   },
   "types": "./dist/esm/src/mod.d.ts",
   "engines": {
-    "wechaty": ">=1.0.6",
     "node": ">=16",
     "npm": ">=7"
   },
@@ -49,11 +48,11 @@
     "@chatie/eslint-config": "^1.0.4",
     "@chatie/git-scripts": "^0.6.2",
     "@chatie/semver": "^0.4.7",
-    "@chatie/tsconfig": "^1.0.3",
+    "@chatie/tsconfig": "^4.5.3",
     "wechaty": "^1.0.6",
-    "wechaty-puppet-mock": "^1.0.3",
+    "wechaty-puppet-mock": "^1.10.2",
     "wechaty-vorpal": "^1.0",
-    "wechaty-vorpal-contrib": "^1.0.3"
+    "wechaty-vorpal-contrib": "^1.0.4"
   },
   "git": {
     "scripts": {
