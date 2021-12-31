@@ -6,7 +6,7 @@ import {
 }                         from 'tstest'
 
 import {
-  impl,
+  impls,
 }                         from 'wechaty'
 import * as PUPPET        from 'wechaty-puppet'
 import {
@@ -17,8 +17,8 @@ import { createFixture }  from './create-fixture.js'
 
 test('createFixture() initial state', async (t) => {
   for await (const fixture of createFixture()) {
-    t.ok(impl.MessageImpl.valid(fixture.wechaty.message), 'should have message instance')
-    t.equal(fixture.wechaty.message.type(), PUPPET.type.Message.Text, 'should have message with text type')
+    t.ok(impls.MessageImpl.valid(fixture.wechaty.message), 'should have message instance')
+    t.equal(fixture.wechaty.message.type(), PUPPET.types.Message.Text, 'should have message with text type')
     t.equal(typeof fixture.wechaty.message.text(), 'string', 'should have message with text content')
 
     t.equal(fixture.wechaty.message.talker().id, fixture.mocker.player.id, 'should get a message send from player')

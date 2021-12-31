@@ -29,7 +29,7 @@ async function main (): Promise<number> {
      * Player Logic
      */
     const onMessageMock = async (message: MessageMock) => {
-      if (message.type() !== WECHATY.type.Message.Text)   { return }
+      if (message.type() !== WECHATY.types.Message.Text)   { return }
       const text = message.text()
       if (!text)                                  { return }
 
