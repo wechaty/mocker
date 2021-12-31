@@ -49,10 +49,10 @@
     "@chatie/git-scripts": "^0.6.2",
     "@chatie/semver": "^0.4.7",
     "@chatie/tsconfig": "^4.6.2",
-    "wechaty": "^1.11.27",
-    "wechaty-puppet-mock": "^1.10.2",
-    "wechaty-vorpal": "^1.0.5",
-    "wechaty-vorpal-contrib": "^1.0.4"
+    "wechaty": "^1.11.28",
+    "wechaty-puppet-mock": "^1.11.11",
+    "wechaty-vorpal": "^1.11.4",
+    "wechaty-vorpal-contrib": "^1.11.5"
   },
   "git": {
     "scripts": {
