@@ -115,12 +115,6 @@ async function * createFixture (
     mtList,
   }
 
-  /**
-   * Huan(202108): clean up event loops tasks
-   *  before stop wechaty
-   */
-  await new Promise(setImmediate)
-
   await wechaty.stop()
 }
 
